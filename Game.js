@@ -5,7 +5,7 @@ class Game{
         this.elementid = elementid
         var element = document.getElementById(elementid)
         $(document).data("game",this)
-        this.id = id || ID()
+        this.id = id || "" /* || ID()*/
         this.c = element
         this.ctx = element.getContext('2d')
 
@@ -167,8 +167,9 @@ class Game{
     }
 
     static init(game){
-        var columnsString = ascendingArray(0,game.grid.width - 1).join(";")
         game.spawn_shape() // start the game
+        game.draw()
+        /*var columnsString = ascendingArray(0,game.grid.width - 1).join(";")
         var table = game.id
         Query.run("Query.createTable",[table,columnsString,],function(game,start){
             Query.run("Query.insert",['gamedata',game.export],function(game,start){ // game data
@@ -182,7 +183,7 @@ class Game{
                     },[game,start])
                 },[game,start])
             },[game,start])
-        },[game,new Date().getTime()])
+        },[game,new Date().getTime()])*/
     }
 
     get export(){
@@ -194,12 +195,12 @@ class Game{
     }
     
     static sync(game){
-        Query.reload(game.id,function(game){
+        /*Query.reload(game.id,function(game){
             var cacheData = game.grid.export
             var serverData = Query.select(game.id)
             var toPush = cacheData.filter(comparer(serverData));
             Query.run("Query.updateMulti",[game.id,toPush],Game.sync,[game])
-        },[game])
+        },[game])*/
     }
     
     static import(data) {
@@ -214,12 +215,12 @@ class Game{
     }
 
     static spectate(game,start){
-        var data = Query.select(game.id)
+        var data = {} /*Query.select(game.id)*/
         game.grid.import(data)
         game.draw()
         var end = new Date().getTime()
         console.log(end - start + "ms") // time taken for each refresh, should be under game refresh time
-        Query.reload(game.id,Game.spectate,[game,end])
+        /*Query.reload(game.id,Game.spectate,[game,end])*/
     }
 }
 

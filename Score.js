@@ -7,7 +7,7 @@ class Score{
 
     add(score){
         this.score += score
-        Query.updateId("gamedata",this.game.id,"score",this.score)
+        /*Query.updateId("gamedata",this.game.id,"score",this.score)*/
     }
 
     clear_rows(count){

@@ -1,6 +1,6 @@
 class Shape{
     constructor(game,shape,color,pos,id){
-        this.id = id || ID()
+        this.id = id || "" //ID()
         this.game = game
         this.shape = shape
         this.color = color || Color.BLACK
